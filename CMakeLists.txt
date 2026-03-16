@@ -9,10 +9,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_CXX_MODULE_STD 1)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake" ${CMAKE_MODULE_PATH})
+
+# Locate the NVRT distribution.  Search the SDK first, then look in the system.
+set(OptiX_INSTALL_DIR "${CMAKE_SOURCE_DIR}/../" CACHE PATH "Path to OptiX installed location.")
+
+# Search for the OptiX libraries and include files.
+find_package(OptiX REQUIRED)
+
 include_directories(BEFORE ${PROJECT_SOURCE_DIR})
 include_directories(BEFORE "${PROJECT_SOURCE_DIR}/maths")
 include_directories(BEFORE "/usr/local/include/abi_ex")
-
+include_directories(BEFORE "/usr/local/include/compound-ray")
+include_directories("${OptiX_INCLUDE}")
 #
 # Module groups
 #
@@ -68,4 +77,4 @@ endfunction()
 
 set_source_files_properties (${SM_VVEC_MODULES} PROPERTIES LANGUAGE CXX)
 add_modules_exe (abi_prog target_name SOURCES abi_prog.cpp MODULES ${SM_VVEC_MODULES} OPTIONS -rdc true)
-target_link_libraries(abi_prog /usr/local/lib/libabi_ex.so) # c++abi
+target_link_libraries(abi_prog /usr/local/lib/libabi_ex.so /usr/local/lib/libEyeRenderer3.so)
