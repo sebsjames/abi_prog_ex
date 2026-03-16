@@ -10,42 +10,42 @@ set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_CXX_MODULE_STD 1)
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR})
-include_directories(BEFORE "${PROJECT_SOURCE_DIR}/maths/sm")
+include_directories(BEFORE "${PROJECT_SOURCE_DIR}/maths")
 include_directories(BEFORE "/usr/local/include/abi_ex")
 
 #
 # Module groups
 #
 set(SM_CONSTEXPR_MATH_MODULES
-  ${PROJECT_SOURCE_DIR}/sm/mathconst
-  ${PROJECT_SOURCE_DIR}/sm/constexpr_math
+  ${PROJECT_SOURCE_DIR}/maths/sm/mathconst
+  ${PROJECT_SOURCE_DIR}/maths/sm/constexpr_math
 )
 set(SM_POLYSOLVE_MODULES
   ${SM_CONSTEXPR_MATH_MODULES}
-  ${PROJECT_SOURCE_DIR}/sm/polysolve
+  ${PROJECT_SOURCE_DIR}/maths/sm/polysolve
 )
 set(SM_BESSEL_I0_MODULES
   ${SM_POLYSOLVE_MODULES}
-  ${PROJECT_SOURCE_DIR}/sm/bessel_i0
+  ${PROJECT_SOURCE_DIR}/maths/sm/bessel_i0
 )
 set(SM_RANDOM_MODULES
   ${SM_BESSEL_I0_MODULES}
-  ${PROJECT_SOURCE_DIR}/sm/random
+  ${PROJECT_SOURCE_DIR}/maths/sm/random
 )
 set(SM_RANGE_MODULES
   ${SM_CONSTEXPR_MATH_MODULES}
-  ${PROJECT_SOURCE_DIR}/sm/trait_tests
-  ${PROJECT_SOURCE_DIR}/sm/range
+  ${PROJECT_SOURCE_DIR}/maths/sm/trait_tests
+  ${PROJECT_SOURCE_DIR}/maths/sm/range
 )
 set(SM_VEC_MODULES
   ${SM_RANGE_MODULES}
   ${SM_RANDOM_MODULES}
-  ${PROJECT_SOURCE_DIR}/sm/vec
+  ${PROJECT_SOURCE_DIR}/maths/sm/vec
 )
 set(SM_VVEC_MODULES
   ${SM_RANGE_MODULES}
   ${SM_RANDOM_MODULES}
-  ${PROJECT_SOURCE_DIR}/sm/vvec
+  ${PROJECT_SOURCE_DIR}/maths/sm/vvec
 )
 
 # Macro similar to that used in antpov
